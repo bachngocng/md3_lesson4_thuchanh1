@@ -1,0 +1,14 @@
+use quanlysinhvien;
+
+select *
+from subject
+where Credit = (select max(Credit) from subject);
+
+select subject.*
+from subject join mark m on subject.SubId = m.SubId
+where Mark >= all (select Mark from  mark);
+
+select student.*, avg(mark) as 'diemTB'
+from student join mark m on student.StudentId = m.StudentId
+group by student.StudentId
+order by 'diemTb' desc ;
