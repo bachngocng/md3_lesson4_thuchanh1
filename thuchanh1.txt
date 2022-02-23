@@ -1,0 +1,14 @@
+use quanlysinhvien;
+select Address, count(StudentId) as 'Số lượng học viên'
+from student
+group by Address;
+
+select S.StudentId, S.StudentName, AVG(Mark)
+from Student S join mark m on S.StudentId = m.StudentId
+group by S.StudentId, S.StudentName
+having avg(Mark) > 8;
+
+select S.StudentId, S.StudentName,AVG(Mark)
+from student s join mark m on s.StudentId = m.StudentId
+group by S.StudentId, S.StudentName
+having avg(Mark) >= all (SELECT avg(mark) from mark group by Mark.StudentId);
